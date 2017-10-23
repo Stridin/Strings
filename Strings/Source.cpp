@@ -10,10 +10,15 @@ void print( const char* s )
 
 int main()
 {
-	const char msg[7] = { 'P', 'u', 'b', 'e', 's', '!', 0 };
-	const char msg2[7] = { "Pubes!" }; // never forget the size
+	char msg[] = { 'P', 'u', 'b', 'e', 's', '!', 0 };
+	char msg2[] = { "Pubes!" };
+	msg[0] = '#';
+
+	const char* waifu = "MYWIFE"; // aint gonna work
+
 	print( msg );
 	print( msg2 );
+	print( waifu );
 
 	while ( !_kbhit() );
 	return 0;
