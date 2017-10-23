@@ -10,8 +10,10 @@ void print( const char* s )
 
 int main()
 {
-	const char msg[] = { 'P', 'u', 'b', 'e', 's', '!', 0 };
+	const char msg[7] = { 'P', 'u', 'b', 'e', 's', '!', 0 };
+	const char msg2[7] = { "Pubes!" }; // never forget the size
 	print( msg );
+	print( msg2 );
 
 	while ( !_kbhit() );
 	return 0;
