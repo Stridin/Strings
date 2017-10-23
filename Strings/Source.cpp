@@ -38,19 +38,31 @@ int str2int( const char* s )
 	return val;
 }
 
+int nfib( const int n )
+{
+	if ( n < 2 )
+	{
+		return n;
+	}
+	int x1 = n - 1;
+	int x2 = n - 2;
+	for ( int i = 2; i <= n; i++, x1++, x2++ )
+	{
+		x1 += x2;
+	}
+	return x1;
+}
+
 int main()
 {
-	print( "How many pubes? " );
+	print( "Input Nth Fibonacci number to be found: " );
 	char answer[69];
 	read( answer, 69 );
 
-	const int pubeCount = str2int( answer );
+	const int nthfib = str2int( answer );
 
-	print( "\n" );
-	for ( int n = 0; n < pubeCount; n++ )
-	{
-		print( "Pubes! " );
-	}
+	print( "\nNth Fibonacci is: " );
+	print( result );
 
 	while ( !_kbhit() );
 	return 0;
