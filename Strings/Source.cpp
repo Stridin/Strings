@@ -19,23 +19,38 @@ void read( char* buf, int maxSize )
 	*buf = 0;
 }
 
+int str2int( const char* s )
+{
+	// scan to start point
+	const char* p = s;
+	for ( ; *p >= '0' && *p <= '9'; p++ );
+		p--;
+
+	int val = 0;
+	int place = 1;
+
+	// convert place values and accumulate
+	for ( ; p >= s; p-- )
+	{
+		val += (*p - '0') * place;
+		place *= 10;
+	}
+	return val;
+}
+
 int main()
 {
-	char msg[] = { 'P', 'u', 'b', 'e', 's', '!', 0 };
-	char msg2[] = { "Pubes!" };
-	msg[0] = '#';
+	print( "How many pubes? " );
+	char answer[69];
+	read( answer, 69 );
 
-	const char* waifu = "MYWIFE";
+	const int pubeCount = str2int( answer );
 
-	print( msg );
-	print( msg2 );
-	print( waifu );
-
-	print( "\nType some shit: " );
-	char inbuf[69];
-	read( inbuf, 69 );
-	print( "\nYou typed: " );
-	print( inbuf );
+	print( "\n" );
+	for ( int n = 0; n < pubeCount; n++ )
+	{
+		print( "Pubes! " );
+	}
 
 	while ( !_kbhit() );
 	return 0;
