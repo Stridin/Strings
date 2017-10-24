@@ -38,6 +38,31 @@ int str2int( const char* s )
 	return val;
 }
 
+void int2str( const int num, char* string )
+{
+	if ( num < 10 )
+	{
+		string[0] = num;
+		string[1] = 0;
+	}
+	int swap[69];
+	int i = 0;
+	for ( int tmp = num; tmp >= 10; i++ )
+	{
+		swap[i] = tmp % 10;
+		tmp /= 10;
+		if ( tmp < 10 )
+		{
+			swap[i + 1] = tmp;
+		}
+	}
+	for ( int j = 0; j <= i; j++ )
+	{
+		string[j] = swap[i - j] + '0';
+	}
+	string[i + 1] = 0;
+}
+
 int nfib( const int n )
 {
 	if ( n < 2 )
@@ -59,10 +84,12 @@ int main()
 	char answer[69];
 	read( answer, 69 );
 
-	const int nthfib = str2int( answer );
+	const int fibnum = nfib( str2int( answer ) );
+	char string[69];
+	int2str( fibnum, string );
 
 	print( "\nNth Fibonacci is: " );
-	print( result );
+	print( string );
 
 	while ( !_kbhit() );
 	return 0;
