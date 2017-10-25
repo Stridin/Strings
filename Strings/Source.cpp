@@ -42,40 +42,55 @@ void int2str( const int num, char* string )
 {
 	if ( num < 10 )
 	{
-		string[0] = num;
+		string[0] = num + '0';
 		string[1] = 0;
 	}
-	int swap[69];
-	int i = 0;
-	for ( int tmp = num; tmp >= 10; i++ )
+	else
 	{
-		swap[i] = tmp % 10;
-		tmp /= 10;
-		if ( tmp < 10 )
+		int swap[69];
+		int i = 0;
+		for ( int tmp = num; tmp >= 10; i++ )
 		{
-			swap[i + 1] = tmp;
+			swap[i] = tmp % 10;
+			tmp /= 10;
+			if ( tmp < 10 )
+			{
+				swap[i + 1] = tmp;
+			}
 		}
+		for ( int j = 0; j <= i; j++ )
+		{
+			string[j] = swap[i - j] + '0';
+		}
+		string[i + 1] = 0;
 	}
-	for ( int j = 0; j <= i; j++ )
-	{
-		string[j] = swap[i - j] + '0';
-	}
-	string[i + 1] = 0;
 }
 
 int nfib( const int n )
 {
-	if ( n < 2 )
+	if ( n < 3 )
 	{
-		return n;
+		return n == 2 ? 1 : n;
 	}
-	int x1 = n - 1;
-	int x2 = n - 2;
-	for ( int i = 2; i <= n; i++, x1++, x2++ )
+	int x[4] = { 1, 1, 0, 0 };
+	for ( int i = 2; i <= n; i++ )
 	{
-		x1 += x2;
+		x[3]++;
+		if ( x[3] == 1 )
+		{
+			x[2] = x[0] + x[1];
+		}
+		else if ( x[3] == 2 )
+		{
+			x[1] = x[0] + x[2];
+			x[3] = -1;
+		}
+		else
+		{
+			x[0] = x[1] + x[2];
+		}
 	}
-	return x1;
+	return x[1 - x[3]];
 }
 
 int main()
