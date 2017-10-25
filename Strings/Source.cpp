@@ -20,22 +20,16 @@ void read( char* buf, int maxSize )
 }
 
 int str2int( const char* s )
-{
-	// scan to start point
-	const char* p = s;
-	for ( ; *p >= '0' && *p <= '9'; p++ );
-		p--;
-
-	int val = 0;
-	int place = 1;
-
-	// convert place values and accumulate
-	for ( ; p >= s; p-- )
-	{
-		val += (*p - '0') * place;
-		place *= 10;
-	}
-	return val;
+{ // did i give up too fast before i would have figured THAT out?
+	int sum = 0;
+	 	for ( ; *s >= '0' && *s <= '9'; s++ )
+		 	{
+		 		// shift entire sum left by one decimal place
+			 		sum *= 10;
+		 		// add in new lowest digit
+			 		sum += *s - '0';
+		 	}
+	 	return sum;
 }
 
 void int2str( const int num, char* string )
